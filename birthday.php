@@ -10,7 +10,6 @@ if (isset($_SESSION["email"])) {
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,16 +54,16 @@ if (isset($_SESSION["email"])) {
 <body>
 	<header class="main-header container">
 		<nav class="navbar navbar-expand-lg navbar-light">
-			<a class="navbar-brand col-2" href="index.php"><img src="img/logo.png" alt=""></a>
+			<a class="navbar-brand col-2" href="index.html"><img src="img/logo.png" alt=""></a>
 			<button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div id="my-nav" class="collapse navbar-collapse justify-content-between">
 				<ul class="nav navbar-nav">
-					<li class="nav-item active">
-						<a class="nav-link text-uppercase" href="index.php">Главная <span class="sr-only">(current)</span></a>
-					</li>
 					<li class="nav-item">
+						<a class="nav-link text-uppercase" href="index.html">Главная <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item active">
 						<a class="nav-link text-uppercase" href="category.php">Категории</a>
 					</li>
 					<li class="nav-item">
@@ -73,7 +72,7 @@ if (isset($_SESSION["email"])) {
 
 				</ul>
 				<div class="nav-user">
-					<a href="basket.php" class="nav-btn basket-btn"><img src="img/svg/market.svg" alt=""></a>
+					<button class="nav-btn"><img src="img/svg/market.svg" alt=""></button>
 					<button class="nav-btn user-btn"><img src="img/svg/user.svg" alt=""></button>
 				</div>
 			</div>
@@ -81,104 +80,64 @@ if (isset($_SESSION["email"])) {
 	</header>
 
 	<main class="container">
-		<div class="stocks_title">
-			<p>Акции</p>
+		<div class="category">
+			<div class="dropdown">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Праздники
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="birthday.php">День рождения</a>
+					<a class="dropdown-item" href="#">Новый год</a>
+					<a class="dropdown-item" href="#">8 марта</a>
+					<a class="dropdown-item" href="#">23 февраля</a>
+					<a class="dropdown-item" href="#">14 февраля</a>
+				</div>
+			</div>
+
+			<a href="#" class="btn btn-man">
+				Мужчинам
+			</a>
+
+			<a href="woman.php" class="btn btn-woman">
+				Женщинам
+			</a>
 		</div>
-		<section class="row stocks">
-			<div class="stocks__main col-md-10">
-				<img src="img/free-delivery.jpg" alt="">
-			</div>
-			<ul class="stocks__thumb col-md-2">
-				<li><a href="img/free-delivery.jpg" target="stocks__main"><img src="img/free-delivery.jpg" alt=""></a></li>
-				<li><a href="img/birthday.jpg" target="stocks__main"><img src="img/birthday.jpg" alt=""></a></li>
-				<li><a href="img/gifts.jpg" target="stocks__main"><img src="img/gifts.jpg" alt=""></a></li>
-			</ul>
-		</section>
 
-		<section class="popular-product">
-			<div class="popular-product__title">
-				<p>Популярные товары</p>
-			</div>
-			<div class="swiper-container">
-				<div class="swiper-wrapper">
-					<div class="swipe swiper-slide">
-						<img src="img/product/ring/1.jpg" alt="">
-						<div class="mask">
-							<h2>Янтарное кольцо</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim libero natus explicabo, architecto tenetur. Consectetur quam, impedit quibusdam vel blanditiis.</p>
-							<a href="product-card__ring.php" class="info">Подробнее</a>
-						</div>
-					</div>
+		<div class="category-product">
+			<span class="category-product__title">День Рождения</span>
 
-					<div class="swipe swiper-slide">
+			<div class="new-product__list row justify-content-start">
+				<div class="category-product__item col-md-3">
+					<a href="product-card__flash.php" class="category-product__wrapper">
 						<img src="img/product/flash/1.jpg" alt="">
-						<div class="mask">
-							<h2>Флэш-карта</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, nemo animi praesentium nostrum expedita tempora. Cumque impedit natus itaque, modi.</p>
-							<a href="product-card__flash.php" class="info">Подробнее</a>
+						<div class="category-product__subtitle">
+							<h3>Флэш-карта</h3>
+							<p>199 руб.</p>
 						</div>
-					</div>
+					</a>
+				</div>
 
-					<div class="swipe swiper-slide">
+				<div class="category-product__item col-md-3">
+					<a href="product-card__helmet.php" class="category-product__wrapper">
 						<img src="img/product/helmet/1.jpg" alt="">
-						<div class="mask">
-							<h2>Шлем виртуальной реальности</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt nihil alias odio repellendus consequatur mollitia quasi soluta atque, id beatae?</p>
-							<a href="product-card__helmet.php" class="info">Подробнее</a>
+						<div class="category-product__subtitle">
+							<h3>Шлем виртуальной реальности</h3>
+							<p>15 000 руб.</p>
 						</div>
-					</div>
-
-					<div class="swipe swiper-slide">
-						<img src="img/product/tea/1.jpg" alt="">
-						<div class="mask">
-							<h2>Чайный набор</h2>
-							<p>A cool description of some sort between these tags. I am so cool and awesomely awesome.</p>
-							<a href="product-card__tea.php" class="info">Подробнее</a>
-						</div>
-					</div>
-
+					</a>
 				</div>
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
+
+
+
 			</div>
-
-
-			<div class="product">
-				<div class="product__item">
-					<img src="img/product/ring/1.jpg" alt="">
-					<h2>Lorem ipsum</h2>
-					<a href="product-card__ring.php">Подробнее</a>
-				</div>
-				<div class="product__item">
-					<img src="img/product/flash/1.jpg" alt="">
-					<h2>Флэш-карта</h2>
-					<a href="product-card__flash.php">Подробнее</a>
-				</div>
-				<div class="product__item">
-					<img src="img/product/helmet/1.jpg" alt="">
-					<h2>Шлем виртуальной реальности</h2>
-					<a href="product-card__helmet.php" class="info">Подробнее</a>
-				</div>
-			</div>
-		</section>
-
-		<section class="address">
-			<div class="address__wrapper col-md-5">
-				<p class="address__title">Наши магазины</p>
-				<p class="address__city">Челябинск:</p>
-				<p class="adderss__subtitle">Ул.Чичерина, д. 37</p>
-				<p class="adderss__subtitle">Ул.Кирова, д. 15А</p>
-			</div>
-			<div class="col-md-7 address__map">
-				<iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ae020d59b99cf852b7f6e430872a0e3878c7e7695600dd836f8f6c5b55085f84f&amp;source=constructor" width="700" height="400" frameborder="0"></iframe>
-		</section>
+		</div>
 	</main>
 
 	<footer class="main-footer ">
 		<div class="footer-nav">
 			<div class="container">
 				<ul>
-					<li><a href="index.php">Главная</a></li>
+					<li><a href="index.html">Главная</a></li>
 					<li><a href="category.php">Категории</a></li>
 					<li><a href="delivery.php">Доставка</a></li>
 				</ul>
@@ -213,12 +172,12 @@ if (isset($_SESSION["email"])) {
 				</button>
 			</div>
 			<div class="modal__form">
-				<form action="/views/authorization.php" method="POST">
+				<form action="/views/authorization.php">
 					<p>Логин</p>
-					<input class="text-input login" type="text" name="email" placeholder="Ваш логин" value=<?php print($userLogin);  ?>>
+					<input class="text-input login" type="text" placeholder="Ваш логин">
 
 					<p>Пароль</p>
-					<input class="text-input pass" type="password" name="password" placeholder="Ваш пароль">
+					<input class="text-input pass" type="password" placeholder="Ваш пароль">
 
 					<button class="btn" value="Войти">Войти</button>
 
@@ -239,21 +198,21 @@ if (isset($_SESSION["email"])) {
 			</div>
 
 			<div class="reg-modal__form ">
-				<form action="/views/registration.php" method="POST">
+				<form action="/views/registration.php">
 					<p>Ваше имя</p>
-					<input type="text" name="first_name" placeholder="Имя">
+					<input type="text" placeholder="Имя">
 
 					<p>Ваша Фамилия</p>
-					<input type="text" name="last_name" placeholder="Фамилия">
+					<input type="text" placeholder="Фамилия">
 
 					<p>E-mail</p>
-					<input type="text" name="email" placeholder="E-mail">
+					<input type="text" placeholder="E-mail">
 
 					<p>Придумайте пароль</p>
-					<input type="password" name="password" placeholder="Пароль">
+					<input type="password" placeholder="Пароль">
 
 					<p>Повторите пароль</p>
-					<input type="password" name="repeat_password" placeholder="Повтор пароля">
+					<input type="password" placeholder="Повтор пароля">
 
 					<button class="btn">Регистрация</button>
 				</form>
@@ -264,6 +223,7 @@ if (isset($_SESSION["email"])) {
 	<script src="js/swiper.min.js"></script>
 	<script src="js/script.js"></script>
 	<script src="js/modal.js"></script>
+
 
 </body>
 

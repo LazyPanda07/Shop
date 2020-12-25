@@ -4,6 +4,7 @@ include_once($_SERVER["DOCUMENT_ROOT"] . "/controllers/UsersController.php");
 session_start();
 
 $usersController = new UsersController();
+$source = apache_request_headers()["Referer"];
 
 try {
     $_SESSION["userId"] = $usersController->authorization($_POST["email"], $_POST["password"]);
@@ -14,4 +15,4 @@ try {
     $_SESSION["exception"] = $e->getMessage();
 }
 
-header("Location: /index.php");
+header("Location: {$source}");
