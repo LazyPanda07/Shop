@@ -6,7 +6,7 @@ class CantFindUser extends Exception
 {
     public function __construct()
     {
-        parent::__construct("Can't find user");
+        parent::__construct("Can not find user");
     }
 }
 
