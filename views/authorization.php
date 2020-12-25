@@ -8,10 +8,10 @@ $usersController = new UsersController();
 try {
     $_SESSION["userId"] = $usersController->authorization($_POST["email"], $_POST["password"]);
     $_SESSION["email"] = $_POST["email"];
-} catch (Exception $th) {
-    print($th->getMessage());
+} catch (CantFindUser $e) {
+    $_SESSION["exception"] = $e->getMessage();
+} catch (WrongPassword $e) {
+    $_SESSION["exception"] = $e->getMessage();
 }
-
-print($_SESSION["email"]);
 
 header("Location: /index.php");

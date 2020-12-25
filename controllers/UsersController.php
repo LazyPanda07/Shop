@@ -2,6 +2,38 @@
 
 include_once($_SERVER["DOCUMENT_ROOT"] . "/models/UsersModel.php");
 
+class CantFindUser extends Exception
+{
+    public function __construct()
+    {
+        parent::__construct("Can't find user");
+    }
+}
+
+class WrongPassword extends Exception
+{
+    public function __construct()
+    {
+        parent::__construct("Wrong password");
+    }
+}
+
+class UserAlreadyExists extends Exception
+{
+    public function __construct()
+    {
+        parent::__construct("User already exists");
+    }
+}
+
+class WrongRepeatPassword extends Exception
+{
+    public function __construct()
+    {
+        parent::__construct("password not equal repeat_password");
+    }
+}
+
 class UsersController
 {
     private $model;
@@ -13,22 +45,21 @@ class UsersController
 
     public function authorization(&$email, &$password): int
     {
-        $tem = $this->model->getByField("email", $email)[0];
+        $tem = $this->model->getByField("email", $email);
 
-        print($password);
+        if ($tem == null) {
+            throw new CantFindUser();
+        }
+
+        $tem = $tem[0];
 
         $password_hash = hash("sha256", $password);
 
-        if ($tem == null) {
-            throw new Exception("Can't find user");
-        }
-
-        if($tem["password"] == $password_hash)
-        {
+        if ($tem["password"] == $password_hash) {
             return $tem["id"];
         }
 
-        throw new Exception("Wrong password");
+        throw new WrongPassword();
     }
 
     public function registration(array &$attributes): array

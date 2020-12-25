@@ -6,15 +6,19 @@ session_start();
 $usersController = new UsersController();
 
 if ($_POST["password"] != $_POST["repeat_password"]) {
-    header("Location: /index.php", true, 400);
+    $_SESSION["exception"] = (new WrongPassword())->getMessage();
+
+    header("Location: /index.php");
+
+    exit();
 }
 
 unset($_POST["repeat_password"]);
 
 try {
     $usersController->registration($_POST);
-} catch (Exception $th) {
-    print($th->getMessage());
+} catch (UserAlreadyExists $e) {
+    $_SESSION["exception"] = $e->getMessage();
 }
 
 header("Location: /index.php");
