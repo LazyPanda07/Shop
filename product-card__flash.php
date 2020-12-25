@@ -54,14 +54,14 @@ if (isset($_SESSION["email"])) {
 <body>
 	<header class="main-header container">
 		<nav class="navbar navbar-expand-lg navbar-light">
-			<a class="navbar-brand col-2" href="index.html"><img src="img/logo.png" alt=""></a>
+			<a class="navbar-brand col-2" href="index.php"><img src="img/logo.png" alt=""></a>
 			<button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div id="my-nav" class="collapse navbar-collapse justify-content-between">
 				<ul class="nav navbar-nav">
 					<li class="nav-item active">
-						<a class="nav-link text-uppercase" href="index.html">Главная <span class="sr-only">(current)</span></a>
+						<a class="nav-link text-uppercase" href="index.php">Главная <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link text-uppercase" href="category.php">Категории</a>
@@ -116,7 +116,7 @@ if (isset($_SESSION["email"])) {
 		<div class="footer-nav">
 			<div class="container">
 				<ul>
-					<li><a href="index.html">Главная</a></li>
+					<li><a href="index.php">Главная</a></li>
 					<li><a href="category.php">Категории</a></li>
 					<li><a href="delivery.php">Доставка</a></li>
 				</ul>
