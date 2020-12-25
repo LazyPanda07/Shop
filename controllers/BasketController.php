@@ -36,11 +36,15 @@ class BasketController
     {
         $result = $this->model->getById($id);
 
-        if($result == null)
-        {
+        if ($result == null) {
             throw new NoProducts();
         }
 
         return $result;
+    }
+
+    public function deleteProduct(int &$id): void
+    {
+        $this->model->deleteById($id);
     }
 }

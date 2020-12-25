@@ -51,8 +51,18 @@ class BaseModel
         $query = "INSERT INTO {$this->tableName} ({$fieldNames}) VALUES ({$fieldValues})";
 
         $this->connection->query($query);
+
         $this->connection->commit();
 
         return $this->connection->insert_id;
+    }
+
+    public function deleteById(int &$id): void
+    {
+        $query = "DELETE FROM {$this->tableName} WHERE id = {$id}";
+
+        $this->connection->query($query);
+        
+        $this->connection->commit();
     }
 }

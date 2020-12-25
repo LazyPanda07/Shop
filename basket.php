@@ -94,18 +94,11 @@ if (isset($_SESSION["email"])) {
 
 						<div class="basket__card-price">
 							<p>322</p>
-							<div class="number">
-								<button class="minus">-</button>
-								<input type="text" value="1" size="3" />
-								<button class="plus">+</button>
-							</div>
 						</div>
 					</div>
 				</div>
 
 			</div>
-
-
 
 			<div class="basket__side-bar col-md-3">
 				<div class="basket__price">
