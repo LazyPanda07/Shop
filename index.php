@@ -4,9 +4,9 @@ session_start();
 
 $userLogin = "";
 
-if (isset($_SESSION["login"]))
+if (isset($_SESSION["email"]))
 {
-	$userLogin = $_SESSION["login"];
+	$userLogin = $_SESSION["email"];
 }
 
 ?>
@@ -195,9 +195,9 @@ if (isset($_SESSION["login"]))
 				</button>
 			</div>
 			<div class="modal__form">
-				<form action="/login.php" method="POST">
+				<form action="/views/authorization.php" method="POST">
 					<p>Логин</p>
-					<input class="text-input login" type="text" name="login" placeholder="Ваш логин" value=<?php print($userLogin);  ?>>
+					<input class="text-input login" type="text" name="email" placeholder="Ваш логин" value=<?php print($userLogin);  ?>>
 
 					<p>Пароль</p>
 					<input class="text-input pass" type="password" name="password" placeholder="Ваш пароль">
@@ -221,21 +221,21 @@ if (isset($_SESSION["login"]))
 			</div>
 
 			<div class="reg-modal__form ">
-				<form action="" method="POST">
+				<form action="/views/registration.php" method="POST">
 					<p>Ваше имя</p>
-					<input type="text" placeholder="Имя">
+					<input type="text" name="first_name" placeholder="Имя">
 
 					<p>Ваша Фамилия</p>
-					<input type="text" placeholder="Фамилия">
+					<input type="text" name="last_name" placeholder="Фамилия">
 
 					<p>E-mail</p>
-					<input type="text" placeholder="E-mail">
+					<input type="text" name="email" placeholder="E-mail">
 
 					<p>Придумайте пароль</p>
-					<input type="password" placeholder="Пароль">
+					<input type="password" name="password" placeholder="Пароль">
 
 					<p>Повторите пароль</p>
-					<input type="password" placeholder="Повтор пароля">
+					<input type="password" name="repeat_password" placeholder="Повтор пароля">
 
 					<button class="btn">Регистрация</button>
 				</form>
