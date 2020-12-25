@@ -7,6 +7,13 @@ session_start();
 $basket_controller = new BasketController();
 $source = apache_request_headers()["Referer"];
 
+if (!isset($_SESSION["user_id"]))
+{
+    $_SESSION["exception"] = (new UnAuthorized())->getMessage();
+
+    exit();
+}
+
 $_POST["user_id"] = $_SESSION["user_id"];
 
 $basket_controller->addProduct($_POST);

@@ -10,6 +10,14 @@ class NoProducts extends Exception
     }
 }
 
+class UnAuthorized extends Exception
+{
+    public function __construct()
+    {
+        parent::__construct("You must authorize");
+    }
+}
+
 class BasketController
 {
     private $model;

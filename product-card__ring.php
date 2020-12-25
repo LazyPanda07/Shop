@@ -93,17 +93,21 @@ if (isset($_SESSION["email"])) {
 			</div>
 
 			<div class="col-md-7 product-card__info">
-				<h3>Янтарное кольцо</h3>
-				<h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, similique?</h4>
-				<p>1999 руб./шт</p>
-				<div class="product-card__btn">
-					<div class="number">
-						<button class="minus">-</button>
-						<input type="text" value="1" size="3" />
-						<button class="plus">+</button>
+				<form action="/views/fill_basket.php" method="post">
+					<h3>Янтарное кольцо</h3>
+					<input type="hidden" name="name" value="Янтарное кольцо">
+					<h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, similique?</h4>
+					<p>1999 руб./шт</p>
+					<input type="hidden" name="price" value="1999">
+					<div class="product-card__btn">
+						<div class="number">
+							<button class="minus">-</button>
+							<input type="text" value="1" size="3" name="count" />
+							<button class="plus">+</button>
+						</div>
+						<button class="product-card__add">Добавить в корзину</button>
 					</div>
-					<button class="product-card__add">Добавить в корзину</button>
-				</div>
+				</form>
 			</div>
 
 		</div>
@@ -151,12 +155,12 @@ if (isset($_SESSION["email"])) {
 				</button>
 			</div>
 			<div class="modal__form">
-				<form action="/views/authorization.php">
+				<form action="/views/authorization.php" method="POST">
 					<p>Логин</p>
-					<input class="text-input login" type="text" placeholder="Ваш логин">
+					<input class="text-input login" type="text" name="email" placeholder="Ваш логин" value=<?php print($userLogin);  ?>>
 
 					<p>Пароль</p>
-					<input class="text-input pass" type="password" placeholder="Ваш пароль">
+					<input class="text-input pass" type="password" name="password" placeholder="Ваш пароль">
 
 					<button class="btn" value="Войти">Войти</button>
 
@@ -177,21 +181,21 @@ if (isset($_SESSION["email"])) {
 			</div>
 
 			<div class="reg-modal__form ">
-				<form action="/views/registration.php">
+				<form action="/views/registration.php" method="POST">
 					<p>Ваше имя</p>
-					<input type="text" placeholder="Имя">
+					<input type="text" name="first_name" placeholder="Имя">
 
 					<p>Ваша Фамилия</p>
-					<input type="text" placeholder="Фамилия">
+					<input type="text" name="last_name" placeholder="Фамилия">
 
 					<p>E-mail</p>
-					<input type="text" placeholder="E-mail">
+					<input type="text" name="email" placeholder="E-mail">
 
 					<p>Придумайте пароль</p>
-					<input type="password" placeholder="Пароль">
+					<input type="password" name="password" placeholder="Пароль">
 
 					<p>Повторите пароль</p>
-					<input type="password" placeholder="Повтор пароля">
+					<input type="password" name="repeat_password" placeholder="Повтор пароля">
 
 					<button class="btn">Регистрация</button>
 				</form>
