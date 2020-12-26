@@ -236,7 +236,7 @@ if (isset($_SESSION["email"])) {
 
 					const basketCard = String.raw `<div class="basket__card">
 					<div class="basket__img">
-						<img src="img/1.jpg" alt="">
+						<img src="${json[i]["image_source_path"]}" alt="">
 					</div>
 					${valueToInsert}
 				</div>`;

@@ -105,6 +105,7 @@ if (isset($_SESSION["email"])) {
 							<input type="text" value="1" size="3" name="count" />
 							<button class="plus">+</button>
 						</div>
+						<input type="hidden" name="image_source_path" value="/img/product/ring/1.jpg">
 						<button class="product-card__add">Добавить в корзину</button>
 					</div>
 				</form>
