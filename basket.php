@@ -84,22 +84,6 @@ if (isset($_SESSION["email"])) {
 	<main class="container">
 		<div class="basket row justify-content-between">
 			<div class="col-md-9">
-				<div class="basket__card">
-					<div class="basket__img">
-						<img src="img/1.jpg" alt="">
-					</div>
-					<div class="basket__card-wrapper">
-						<div class="basket__card-title">
-							<h3>Название</h3>
-							<button class="basket__btn-del">Удалить</button>
-						</div>
-
-						<div class="basket__card-price">
-							<p>322</p>
-						</div>
-					</div>
-				</div>
-
 			</div>
 
 			<div class="basket__side-bar col-md-3">
@@ -227,8 +211,6 @@ if (isset($_SESSION["email"])) {
 	<script src="js/modal.js"></script>
 
 	<script>
-		
-
 		$.ajax({
 			url: "/views/get_basket.php",
 			method: "POST",
@@ -237,11 +219,29 @@ if (isset($_SESSION["email"])) {
 			success: function(data) {
 				const json = JSON.parse(JSON.stringify(data));
 
-				const firstElement = json[0];
+				for (const i in json) {
+					const valueToInsert = String.raw `<div class="basket__card-wrapper">
+						<div class="basket__card-title">
+							<h3>${json[i]["name"]}(${json[i]["count"]})</h3>
+							<form action="/views/delete_from_basket.php" method="POST">
+							<input type="hidden" name="id" value="${json[i]["id"]}">
+							<button class="basket__btn-del">Удалить</button>
+							</form>
+						</div>
 
-				for(const i in firstElement)
-				{
-					console.log(i, firstElement[i]);
+						<div class="basket__card-price">
+							<p>${json[i]["price"] * json[i]["count"]}</p>
+						</div>
+					</div>`;
+
+					const basketCard = String.raw `<div class="basket__card">
+					<div class="basket__img">
+						<img src="img/1.jpg" alt="">
+					</div>
+					${valueToInsert}
+				</div>`;
+
+					$(".col-md-9").append(basketCard);
 				}
 			}
 		});
