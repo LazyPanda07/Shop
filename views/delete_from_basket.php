@@ -4,7 +4,7 @@ include_once($_SERVER["DOCUMENT_ROOT"] . "/controllers/BasketController.php");
 
 session_start();
 
-$basket_controller = new BasketController();
+$basketController = new BasketController();
 $source = apache_request_headers()["Referer"];
 
 if (!isset($_SESSION["user_id"]))
@@ -14,6 +14,6 @@ if (!isset($_SESSION["user_id"]))
     exit();
 }
 
-$basket_controller->deleteProduct($_POST["id"]);
+$basketController->deleteProduct($_POST["id"]);
 
 header("Location: {$source}");

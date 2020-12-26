@@ -8,10 +8,10 @@ if (!isset($_SESSION["user_id"])) {
     exit();
 }
 
-$basket_controller = new BasketController();
+$basketController = new BasketController();
 
 try {
-    $products = $basket_controller->getProductsByUserId($_SESSION["user_id"]);
+    $products = $basketController->getProductsByUserId($_SESSION["user_id"]);
 
     print(json_encode($products));
 } catch (NoProducts $e) {

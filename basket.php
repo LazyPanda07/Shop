@@ -96,7 +96,7 @@ if (isset($_SESSION["email"])) {
 				</div>
 				<form class="basket__form justify-content-center" action="/views/delivery.php" , method="POST">
 					<label for="name">Ваше имя</label>
-					<input type="text" id="name" placeholder="Имя" name="name">
+					<input type="text" id="name" placeholder="Имя" name="first_name">
 
 					<label for="num">Номер телефона</label>
 					<input type="text" id="num" placeholder="Номер" name="telephone_number">

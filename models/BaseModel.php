@@ -62,7 +62,7 @@ class BaseModel
         $query = "DELETE FROM {$this->tableName} WHERE id = {$id}";
 
         $this->connection->query($query);
-        
+
         $this->connection->commit();
     }
 }
