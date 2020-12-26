@@ -3,6 +3,7 @@
 session_start();
 
 $userLogin = "";
+$userId = $_SESSION["user_id"];
 
 if (isset($_SESSION["email"])) {
 	$userLogin = $_SESSION["email"];
@@ -20,7 +21,7 @@ if (isset($_SESSION["email"])) {
 	<meta name="author" content="">
 	<link rel="icon" href="../../../../favicon.ico">
 
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
@@ -49,6 +50,7 @@ if (isset($_SESSION["email"])) {
 		unset($_SESSION["exception"]);
 	}
 	?>
+
 </head>
 
 <body>
@@ -224,6 +226,26 @@ if (isset($_SESSION["email"])) {
 	<script src="js/script.js"></script>
 	<script src="js/modal.js"></script>
 
+	<script>
+		
+
+		$.ajax({
+			url: "/views/get_basket.php",
+			method: "POST",
+			dataType: "json",
+			async: false,
+			success: function(data) {
+				const json = JSON.parse(JSON.stringify(data));
+
+				const firstElement = json[0];
+
+				for(const i in firstElement)
+				{
+					console.log(i, firstElement[i]);
+				}
+			}
+		});
+	</script>
 
 </body>
 

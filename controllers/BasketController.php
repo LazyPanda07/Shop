@@ -32,9 +32,9 @@ class BasketController
         $this->model->insert($attributes);
     }
 
-    public function getProductsByuser_id(int &$id): array
+    public function getProductsByUserId(int &$id): array
     {
-        $result = $this->model->getById($id);
+        $result = $this->model->getByField("user_id", $id);
 
         if ($result == null) {
             throw new NoProducts();
