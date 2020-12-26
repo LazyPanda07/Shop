@@ -87,15 +87,6 @@ if (isset($_SESSION["email"])) {
 			</div>
 
 			<div class="basket__side-bar col-md-3">
-				<!--
-				<div class="basket__price">
-					<h3 class="basket__price-title">Товары(1)</h3>
-					<div class="basket__sum">
-						<h3>Всего(р)</h3>
-						<span>322</span>
-					</div>
-				</div>
-				-->
 				<form class="basket__form justify-content-center" action="/views/delivery.php" , method="POST">
 					<label for="name">Ваше имя</label>
 					<input type="text" id="name" placeholder="Имя" name="first_name">
@@ -213,6 +204,7 @@ if (isset($_SESSION["email"])) {
 	<script>
 		function getInformation() {
 			$(String.raw `<input type="hidden" name="products" value='${$("#additional_information").val()}'>`).insertBefore($("#order"));
+			$(String.raw `<input type="hidden" name="order_price" value=${parseFloat($("#total_price").html())}>`).insertBefore($("#order"));
 		}
 
 		function setOverallInformation(totalProducts, totalPrice) {
@@ -220,7 +212,7 @@ if (isset($_SESSION["email"])) {
 					<h3 class="basket__price-title">Товары(${totalProducts})</h3>
 					<div class="basket__sum">
 						<h3>Всего(р)</h3>
-						<span>${totalPrice}</span>
+						<span id="total_price">${totalPrice}</span>
 					</div>
 				</div>`).insertBefore($(".basket__form"));
 		}
