@@ -94,25 +94,23 @@ if (isset($_SESSION["email"])) {
 						<span>322</span>
 					</div>
 				</div>
-				<form class="basket__form justify-content-center" action="">
+				<form class="basket__form justify-content-center" action="/views/delivery.php" , method="POST">
 					<label for="name">Ваше имя</label>
-					<input type="text" id="name" placeholder="Имя">
+					<input type="text" id="name" placeholder="Имя" name="name">
 
 					<label for="num">Номер телефона</label>
-					<input type="text" id="num" placeholder="Номер">
-
+					<input type="text" id="num" placeholder="Номер" name="telephone_number">
 
 					<label for="addr">Адрес доставки</label>
-					<input type="text" id="addr" placeholder="Адрес">
+					<input type="text" id="addr" placeholder="Адрес" name="address">
 
-
-					<select>
+					<select name="type">
 						<option>Доставка курьером</option>
 						<option>Самовывоз</option>
 					</select>
 					<p>Оплата осуществлятся наличными при получении заказа</p>
 
-					<button>Заказать</button>
+					<button onclick="getInformation();" id="order">Заказать</button>
 				</form>
 			</div>
 		</div>
@@ -211,6 +209,10 @@ if (isset($_SESSION["email"])) {
 	<script src="js/modal.js"></script>
 
 	<script>
+		function getInformation() {
+			$(String.raw `<input type="hidden" name="products" value='${$("#additional_information").val()}'>`).insertBefore($("#order"));
+		}
+
 		$.ajax({
 			url: "/views/get_basket.php",
 			method: "POST",
@@ -218,9 +220,10 @@ if (isset($_SESSION["email"])) {
 			async: false,
 			success: function(data) {
 				const json = JSON.parse(JSON.stringify(data));
+				let orderJson = [];
 
 				for (const i in json) {
-					const valueToInsert = String.raw `<div class="basket__card-wrapper">
+					const basketCardWrapper = String.raw `<div class="basket__card-wrapper">
 						<div class="basket__card-title">
 							<h3>${json[i]["name"]}(${json[i]["count"]})</h3>
 							<form action="/views/delete_from_basket.php" method="POST">
@@ -238,11 +241,20 @@ if (isset($_SESSION["email"])) {
 					<div class="basket__img">
 						<img src="${json[i]["image_source_path"]}" alt="">
 					</div>
-					${valueToInsert}
+					${basketCardWrapper}
 				</div>`;
+
+					orderJson[i] = {
+						name: json[i]["name"],
+						count: json[i]["count"],
+						price: json[i]["price"],
+						total_price: json[i]["price"] * json[i]["count"]
+					};
 
 					$(".col-md-9").append(basketCard);
 				}
+
+				$("body").append(String.raw `<input type="hidden" id="additional_information" value='${JSON.stringify(orderJson)}'>`);
 			}
 		});
 	</script>
