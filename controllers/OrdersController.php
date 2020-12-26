@@ -19,8 +19,8 @@ class OrdersController
         $this->model = new OrdersModel();
     }
 
-    public function addOrder(array &$attributes): int
+    public function addOrder(array &$attributes): void
     {
-        return $this->model->insert($attributes);
+        $this->model->insert($attributes);
     }
 }

@@ -17,11 +17,8 @@ if (!isset($_SESSION["user_id"])) {
 
 $_POST["user_id"] = $_SESSION["user_id"];
 
-try {
-    print($ordersController->addOrder($_POST));
-} catch (Exception $e) {
-    $_SESSION["exception"] = $e->getMessage();
-}
+
+$ordersController->addOrder($_POST);
 
 
 header("Location: {$source}");

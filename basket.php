@@ -87,6 +87,7 @@ if (isset($_SESSION["email"])) {
 			</div>
 
 			<div class="basket__side-bar col-md-3">
+				<!--
 				<div class="basket__price">
 					<h3 class="basket__price-title">Товары(1)</h3>
 					<div class="basket__sum">
@@ -94,6 +95,7 @@ if (isset($_SESSION["email"])) {
 						<span>322</span>
 					</div>
 				</div>
+				-->
 				<form class="basket__form justify-content-center" action="/views/delivery.php" , method="POST">
 					<label for="name">Ваше имя</label>
 					<input type="text" id="name" placeholder="Имя" name="first_name">
@@ -213,6 +215,16 @@ if (isset($_SESSION["email"])) {
 			$(String.raw `<input type="hidden" name="products" value='${$("#additional_information").val()}'>`).insertBefore($("#order"));
 		}
 
+		function setOverallInformation(totalProducts, totalPrice) {
+			$(String.raw `<div class="basket__price">
+					<h3 class="basket__price-title">Товары(${totalProducts})</h3>
+					<div class="basket__sum">
+						<h3>Всего(р)</h3>
+						<span>${totalPrice}</span>
+					</div>
+				</div>`).insertBefore($(".basket__form"));
+		}
+
 		$.ajax({
 			url: "/views/get_basket.php",
 			method: "POST",
@@ -221,6 +233,8 @@ if (isset($_SESSION["email"])) {
 			success: function(data) {
 				const json = JSON.parse(JSON.stringify(data));
 				let orderJson = [];
+				let totalProducts = 0;
+				let totalPrice = 0.0;
 
 				for (const i in json) {
 					const basketCardWrapper = String.raw `<div class="basket__card-wrapper">
@@ -244,6 +258,9 @@ if (isset($_SESSION["email"])) {
 					${basketCardWrapper}
 				</div>`;
 
+					totalPrice += json[i]["price"] * json[i]["count"];
+					totalProducts++;
+
 					orderJson[i] = {
 						name: json[i]["name"],
 						count: json[i]["count"],
@@ -253,6 +270,8 @@ if (isset($_SESSION["email"])) {
 
 					$(".col-md-9").append(basketCard);
 				}
+
+				setOverallInformation(totalProducts, totalPrice);
 
 				$("body").append(String.raw `<input type="hidden" id="additional_information" value='${JSON.stringify(orderJson)}'>`);
 			}
